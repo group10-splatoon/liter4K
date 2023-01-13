@@ -18,9 +18,11 @@ class StageDB {
     static private Stage gameOverStage = null;
     static private MediaPlayer mainSound = null;
     static private MediaPlayer gameOverSound = null;
+    static private MediaPlayer gameClearSound = null;
     static private Class mainClass;
     static private final String mainSoundFileName = "sound/helloworld.mp3"; // BGM by OtoLogic
     static private final String gameoverSoundFilename = "sound/gameover.mp3";//必須５
+    static private final String gameclearSoundFilename = "sound/8bit-ME_Victory01.mp3";//GameClearBGM
 
 
     public static void setMainClass(Class mainClass) {
@@ -59,6 +61,23 @@ class StageDB {
             }
         }
         return gameOverSound;
+    }
+
+    public static MediaPlayer getGameClearSound() {
+        if (gameClearSound == null) {
+            try {
+                System.out.println("StageDB:getGameClearSound()");
+                Media g = new Media(new File(gameclearSoundFilename).toURI().toString());
+                MediaPlayer ga = new MediaPlayer(g);
+                ga.setCycleCount(MediaPlayer.INDEFINITE); // loop play
+                ga.setRate(1.0); // 1.0 = normal speed
+                ga.setVolume(0.5); // volume from 0.0 to 1.0
+                gameClearSound = ga;
+            } catch (Exception io) {
+                System.err.print(io.getMessage());
+            }
+        }
+        return gameClearSound;
     }
 
     public static Stage getMainStage() {

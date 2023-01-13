@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 public class MapGameClear{
 
     public static void GameClear(){
+        StageDB.getGameClearSound();
         int toggle = 0;
         System.out.println("MapGameClear:GameClear()");
         Label l = new Label("GAME CLEAR!!!!!");

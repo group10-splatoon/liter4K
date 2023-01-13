@@ -36,11 +36,11 @@ public class MoveChara {
             charaImages[i] = new Image[3];
             for (int j = 0; j < 3; j++) {
                 charaImages[i][j] = new Image(
-                        pngPathPre + directions[i] + animationNumbers[j] + pngPathSuf);
+                pngPathPre + directions[i] + animationNumbers[j] + pngPathSuf);
             }
             charaImageViews[i] = new ImageView(charaImages[i][0]);
             charaImageAnimations[i] = new ImageAnimation(
-                    charaImageViews[i], charaImages[i]);
+            charaImageViews[i], charaImages[i]);
         }
 
         posX = startX;
@@ -65,7 +65,7 @@ public class MoveChara {
     private boolean isMovable(int dx, int dy) {
         if (mapData.getMap(posX + dx, posY + dy) == MapData.TYPE_WALL) {
             return false;
-        } else if (mapData.getMap(posX + dx, posY + dy) == MapData.TYPE_SPACE) {
+        } else if (mapData.getMap(posX + dx, posY + dy) == MapData.TYPE_SPACE || mapData.getMap(posX + dx, posY + dy) == MapData.TYPE_GOAL) {
             return true;
         }
         return false;
@@ -76,7 +76,12 @@ public class MoveChara {
         if (isMovable(dx, dy)) {
             posX += dx;
             posY += dy;
-	    System.out.println("chara[X,Y]:" + posX + "," + posY);
+            System.out.println("chara[X,Y]:" + posX + "," + posY);
+            if (posX == MapData.xGoal && posY == MapData.yGoal){//GOAL
+                StageDB.getMainStage().hide();
+                StageDB.getMainSound().stop();
+                MapGameClear.GameClear();
+            }
             return true;
         } else {
             return false;
