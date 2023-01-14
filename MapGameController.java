@@ -21,7 +21,7 @@ public class MapGameController implements Initializable {
     public ImageView[] mapImageViews;
 
 	public Item item;
- 	public boolean TAKEN;
+ 	public static boolean TAKEN;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
