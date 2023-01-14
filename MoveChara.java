@@ -77,7 +77,7 @@ public class MoveChara {
             posX += dx;
             posY += dy;
             System.out.println("chara[X,Y]:" + posX + "," + posY);
-            if (posX == MapData.xGoal && posY == MapData.yGoal){//GOAL
+            if ((posX == MapData.xGoal && posY == MapData.yGoal) && MapGameController.TAKEN){//GOAL
                 StageDB.getMainStage().hide();
                 StageDB.getMainSound().stop();
                 MapGameClear.GameClear();
